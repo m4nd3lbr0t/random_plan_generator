@@ -1,12 +1,16 @@
-from flask import Flask
+from flask import Flask, jsonify
+from api import data
+import random
+
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def index():
-    return "Hello, World!"
+@app.route('/', methods=['GET'])
+def get_plan():
+    return jsonify(random.choice(data.plans))
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
+
